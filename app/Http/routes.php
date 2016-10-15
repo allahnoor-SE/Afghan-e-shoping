@@ -63,7 +63,17 @@ Route::get('/logout',[
 
 });
 
+Route::auth();
 
+Route::group(['namespace' => 'Api', 'prefix' => 'api'], function()
+{
+	Route::group(['middleware' => ['jwt.auth']], function(){
+	});
+
+	//Route::post('teacher/login', 'apiController@authenticate');
+	Route::get('products', 'apiController@index');
+
+});
 
 
 Route::get('/home', 'HomeController@index');
