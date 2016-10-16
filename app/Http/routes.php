@@ -65,12 +65,20 @@ Route::get('/logout',[
 
 Route::auth();
 
-Route::group(['namespace' => 'Api', 'prefix' => 'api'], function()
+// routes for api only
+Route::group(['namespace' => 'api', 'prefix' => 'api'], function()
 {
 	Route::group(['middleware' => ['jwt.auth']], function(){
+		Route::post('addToWishlist/{id}', 'apiController@addToWishlist');
+		Route::post('removeFromWishlist/{id}', 'apiController@removeFromWishlist');
+		Route::get('wishlists', 'apiController@wishlists');
+
+		Route::post('addToCart/{id}', 'apiController@addToCart');
+		Route::post('removeFromCart/{id}', 'apiController@removeFromCart');
+		Route::get('carts', 'apiController@carts');
 	});
 
-	//Route::post('teacher/login', 'apiController@authenticate');
+	Route::post('login', 'apiController@authenticate');
 	Route::get('products', 'apiController@index');
 
 });
