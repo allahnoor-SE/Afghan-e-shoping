@@ -8,91 +8,97 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-//use Tymon\JWTAuth\Exceptions\JWTException;
-//use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class apiController extends Controller
 {
 
     public function index(){
         $products = Product::all();
-
         return response()->json(compact('products'));
     }
 
-    public function products(){
-        $teachers = User::all();
-        return response()->json(compact('teachers'));
-    }
 
-//    public function authenticate(Request $request)
-//    {
-//        // grab credentials from the request
-//        $credentials = $request->only('email', 'password');
-//
-//
-//        try {
-//            // attempt to verify the credentials and create a token for the user
-//            if (! $token = JWTAuth::attempt($credentials)) {
-//                return response()->json(['error' => 'invalid_credentials'], 401);
-//            }
-//        } catch (JWTException $e) {
-//            // something went wrong whilst attempting to encode the token
-//            return response()->json(['error' => 'could_not_create_token'], 500);
-//        }
-//
-//        // all good so return the token
-//        return response()->json(compact('token'));
-//    }
-
-    public function teacherClassSubjects($id)
+    public function authenticate(Request $request)
     {
-        $teacher = User::find(Auth::user()->id);
-        $class = Clas::find($id);
-        $subjects = $class->subjects;
-        $students = $class->students;
-        $teacherSubjects = array();
-        foreach ($subjects as $subject)
-        {
-            $subject_user = $teacher->subjects()->where('subject_id', $subject->id)->get();
-            $teacherSubjects[] = $subject_user;
+        // grab credentials from the request
+        $credentials = $request->only('email', 'password');
+        try {
+            // attempt to verify the credentials and create a token for the user
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+        } catch (JWTException $e) {
+            // something went wrong whilst attempting to encode the token
+            return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-
-        return response()->json(compact("teacherSubjects"));
+        // all good so return the token
+        return response()->json(compact('token'));
     }
 
-    public function classStudents ($id)
+    public function addToWishlist($id)
     {
-        $class = Clas::find($id);
-        $students = $class->students;
+        $user_id = Auth::user()->id;
 
-        return response()->json(compact("students"));
+        $user = User::find($user_id);
+
+        $user->wishlists()->attach($id);
+
+        return response()->json(['message' => 'Successfully Added'], 200);
     }
 
-    public function saveResult($id, $subject_id,  Request $request)
+    public function wishlists()
     {
-        $teacherId = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
 
-        $subjectId = $subject_id;
-        $classId = $id;
+        $wishlists = $user->wishlists;
 
-        $attendance = new Attendance();
-        $attendance->subject_id = $subjectId;
-        $attendance->user_id = $teacherId;
-        $attendance->class_id = $classId;
-        $attendance->date = Carbon::now();
-
-        $attendance->save();
-
-        $student_status = $request->get('results');
-
-        foreach ($student_status as $key => $value){
-            $student =  Student::find($key);
-            $attendance->students()->attach($student->id, ['status' => $value]);
-        }
-
-        return response()->json(['message' => 'Successfully Submitted'], 200);
+        return response()->json(compact('wishlists'));
     }
+
+    public function removeFromWishlist($id){
+        $user_id = Auth::user()->id;
+
+        $user = User::find($user_id);
+
+        $user->wishlists()->detach($id);
+
+        return response()->json(['message' => 'Successfully Removed'], 200);
+    }
+
+    public function addToCart($id)
+    {
+        $user_id = Auth::user()->id;
+
+        $user = User::find($user_id);
+
+        $user->carts()->attach($id);
+
+        return response()->json(['message' => 'Successfully Added'], 200);
+    }
+
+    public function carts()
+    {
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+
+        $carts = $user->carts;
+
+        return response()->json(compact('carts'));
+    }
+
+    public function removeFromCart($id){
+        $user_id = Auth::user()->id;
+
+        $user = User::find($user_id);
+
+        $user->carts()->detach($id);
+
+        return response()->json(['message' => 'Successfully Removed'], 200);
+    }
+
 
 }
