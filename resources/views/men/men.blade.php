@@ -140,7 +140,7 @@
               <div class="aa-product-inner">
                 <!-- start prduct navigation -->
                  <ul class="nav nav-tabs aa-products-tab">
-                    <li ><a href="{{url('men/men')}}" >Men</a></li>
+                    <li class="active"><a href="{{url('men/men')}}" >Men</a></li>
                     <li><a href="{{url('women/women')}}">Women</a></li>
                     <li><a href="#sports" >Sports</a></li>
                     <li><a href="#electronics">Electronics</a></li>

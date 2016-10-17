@@ -5,11 +5,11 @@
 </head>
   <body> 
    <!-- wpf loader Two -->
-  <!--   <div id="wpf-loader-two">          
+    <div id="wpf-loader-two">          
       <div class="wpf-loader-two-inner">
         <span>Afghan Shop</span>
       </div>
-    </div> -->       
+    </div>       
   <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
 <!-- Start header section -->
@@ -21,15 +21,17 @@
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
              
-              <li class="hidden-xs"><a href="{{url('/create')}}">Dashboord</a></li>
+             
+             @if (Auth::guest())
+                 <li><a href="{{ url('/login')}}">Login</a></li>
+                  <li><a href="{{ url('/register')}}">Register</a></li>
+                  <!-- <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li> -->
+            @else
+                  <li class="hidden-xs"><a href="{{url('product/create')}}">Dashboord</a></li>
                   <li class="hidden-xs"><a href="{{url('/logout')}}">Logout</a></li>
                   <li class="hidden-xs"><a href="{{url('/wish_list')}}">Wishlist<span class="badge">{{Session::has('wish') ? Session::get('wish')->totalQty : ''}}</span></a></li>
                   <li class="hidden-xs"><a href="{{url('/shopping-cart')}}">My Cart</a></li>
-            
-                 <li><a href="{{ url('/login')}}">Login</a></li>
-                  <li><a href="{{ url('/register')}}">Register</a></li>
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                  
+            @endif
                </ul>
               </div>
             </div>
@@ -60,39 +62,9 @@
                   <span class="aa-cart-title">SHOPPING CART</span>
                   <span class="aa-cart-notify">{{ Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
                 </a>
-            <!--     <div class="aa-cartbox-summary">
-                  <ul>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-1.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>                    
-                    <li>
-                      <span class="aa-cartbox-total-title">
-                        Total
-                      </span>
-                      <span class="aa-cartbox-total-price">
-                        $500
-                      </span>
-                    </li>
-                  </ul>
-                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
-                </div> -->
+       
               </div>
-            
-              <!-- / cart box -->
-              <!-- search box -->
+           
               <div class="aa-search-box">
                 <form action="">
                   <input type="text" name="" id="" placeholder="Search here ex. 'man' ">
@@ -128,51 +100,27 @@
               <li><a href="{{url('/')}}">Home</a></li>
               <li><a href="#">Men <span class="caret"></span></a>
                 <ul class="dropdown-menu"> 
-                            
                   <li><a href="{{url('men/sport')}}">Sport</a></li>
+                  <li><a href="{{url('men/shose')}}">Shose</a></li>       
+                  <li><a href="{{url('men/jeuns')}}">Jeans</a></li>
+                  <li><a href="{{url('men/shirt')}}">Shirt</a></li>
+                  <li><a href="{{url('men/t_shirt')}}">T_Shirt</a></li>
+                  <li><a href="{{url('men/formal')}}">Formal</a></li>
+                  <li><a href="{{url('men/suit')}}">Suit</a></li>
                  
                 </ul>
               </li>
               <li><a href="#">Women <span class="caret"></span></a>
                 <ul class="dropdown-menu">  
-                  <li><a href="#">Kurta & Kurti</a></li>                                                                
-                  <li><a href="#">Trousers</a></li>              
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="">Sports</a></li>
-                  <li><a href="{{url('women/formal')}}">Formal</a></li>                
-                  <li><a href="{{url('women/sarees')}}">Sarees</a></li>
-                  <li><a href="#">Shoes</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>
-                      <li><a href="#">And more.. <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Rings</a></li>
-                          <li><a href="#">Earrings</a></li>
-                          <li><a href="#">Jewellery Sets</a></li>
-                          <li><a href="#">Lockets</a></li>
-                          <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>                       
-                          <li><a href="#">Jeans</a></li>
-                          <li><a href="#">Polo T-Shirts</a></li>
-                          <li><a href="#">SKirts</a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Tops</a></li>
-                          <li><a href="#">Make Up</a></li>
-                          <li><a href="#">Hair Care</a></li>
-                          <li><a href="#">Perfumes</a></li>
-                          <li><a href="#">Skin Care</a></li>
-                          <li><a href="#">Hand Bags</a></li>
-                          <li><a href="#">Single Bags</a></li>
-                          <li><a href="#">Travel Bags</a></li>
-                          <li><a href="#">Wallets & Belts</a></li>                        
-                          <li><a href="#">Sunglases</a></li>
-                          <li><a href="#">Nail</a></li>                       
-                        </ul>
-                      </li>                   
-                    </ul>
-                  </li>
+                  <li><a href="{{url('women/weedding_dress')}}">Weedding Dress</a></li>
+                  <li><a href="{{url('women/weedding_accessory')}}">Wedding Accessories</a></li>
+                  <li><a href="{{url('women/evening_dress')}}">evening Dress</a></li>              
+                  <li><a href="{{url('women/casual')}}">Casual</a></li>
+                  <li><a href="{{url('women/sport')}}">Sport</a></li>
+                  <li><a href="{{url('women/formal')}}">Formal Dress</a></li>                
+                  <li><a href="{{url('women/shose_bag')}}">Shose & Bag</a></li>
+                  <li><a href="{{url('women/hejab')}}">Hejab Dress</a></li>
+             
                 </ul>
               </li>
               <li><a href="#">Kids <span class="caret"></span></a>
@@ -194,21 +142,7 @@
                   </li>
                 </ul>
               </li>
-             <li><a href="#">Digital <span class="caret"></span></a>
-                <ul class="dropdown-menu">                
-                  <li><a href="#">Camera</a></li>
-                  <li><a href="#">Mobile</a></li>
-                  <li><a href="#">Tablet</a></li>
-                  <li><a href="#">Laptop</a></li>                                                
-                  <li><a href="#">Accesories</a></li>                
-                </ul>
-              </li>
-              <li><a href="#">Pages <span class="caret"></span></a>
-                <ul class="dropdown-menu">                
-                  <li><a href="product.html">Shop Page</a></li>
-                  <li><a href="product-detail.html">Shop Single</a></li>                    
-                </ul>
-              </li>
+            <li><a href="{{url('contact')}}">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

@@ -21,9 +21,7 @@
                 <img data-seq style="max-height: 400px" src="{{asset('img/10.jpg')}}" alt="Men slide img" />
               </div>
               <div class="seq-title">
-                               
-                <h2 data-seq>Men Collection</h2>           
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+              
               </div>
             </li>
             <!-- single slide item -->
@@ -32,9 +30,6 @@
                 <img data-seq style="max-height: 400px" src="{{asset('img/12.jpg')}}" alt="Wristwatch slide img" />
               </div>
               <div class="seq-title">
-                              
-                <h2 data-seq>Wristwatch Collection</h2>                
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>
             <!-- single slide item -->
@@ -44,9 +39,9 @@
               </div>
               <div class="seq-title">
                             
-                <h2 data-seq>Jeans Collection</h2>                
+                           
                
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+               
               </div>
             </li>
             <!-- single slide item -->           
@@ -55,10 +50,7 @@
                 <img data-seq style="max-height: 400px"  src="{{asset('img/11.jpg')}}" alt="Shoes slide img" />
               </div>
               <div class="seq-title">
-                              
-                <h2 data-seq>Exclusive Shoes</h2>                
-               
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                
               </div>
             </li>
             <!-- single slide item -->  
@@ -67,20 +59,9 @@
                 <img data-seq style="max-height: 400px" src="{{asset('img/5.jpg')}}" alt="Male Female slide img" />
               </div>
               <div class="seq-title">
-                             
-                <h2 data-seq>Best Collection</h2>                
-               
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>                   
           </ul>
-        <!-- slider navigation btn -->
-<!--
-        <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
-          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
-          <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
-        </fieldset>
--->
       </div>
     </div>
   </section>
@@ -98,7 +79,6 @@
                   <div class="aa-promo-banner">                    
                     <img src="{{asset('img/1.jpg')}}" alt="img">                    
                     <div class="aa-prom-content">
-                      <span>75% Off</span>
                       <h4><a href="#">For Women</a></h4>                      
                     </div>
                   </div>
@@ -151,11 +131,8 @@
       </div>
     </div>
   </section>
- 
-
-   <section id="aa-product">
+ <section id="aa-product">
     <div class="container">
-    
       <div class="row">
         <div class="col-md-12">
           <div class="row">
@@ -163,10 +140,10 @@
               <div class="aa-product-inner">
                 <!-- start prduct navigation -->
                  <ul class="nav nav-tabs aa-products-tab">
-                    <li class="active"><a href="#men" data-toggle="tab">Men</a></li>
-                    <li><a href="#women" data-toggle="tab">Women</a></li>
-                    <li><a href="#sports" data-toggle="tab">Sports</a></li>
-                    <li><a href="#electronics" data-toggle="tab">Electronics</a></li>
+                    <li class="active"><a href="{{url('men/men')}}" >Men</a></li>
+                    <li><a href="{{url('women/women')}}">Women</a></li>
+                    <li><a href="#sports">Sports</a></li>
+                    <li><a href="#electronics">Electronics</a></li>
                   </ul>
                   <!-- Tab panes -->
                   @foreach($products->chunk(1) as $productchunk)
@@ -190,33 +167,21 @@
                           <div class="aa-product-hvr-content">
                             <a  href="{{ route('product.addtowishlist', ['id' => $product->id])}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
                             <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-
-
                             <a href="{{route('product.show',$product->id)}}" data-toggle2="tooltip" data-placement="top" title="Quick View"><span class="fa fa-search"></span></a>                          
                           </div>
                        @endforeach
                         </li>
-                     
-                      
-                        </ul>
-                        </div> 
+                         </ul>
+          </div> 
         </div>
        </div>
            @endforeach    
-             </div>
-          
-          
-
-    
+      </div>
     </div>
- 
-    </div>
-  
-
+  </div>
 </div>
     </div>
-  
-    </div>
+  </div>
     </div>
   </section>
 

@@ -1,78 +1,57 @@
 <?php
-
-
-Route::get('/',['as' => 'product.index' , 'uses' => 'ProductController@index']);
-
-Route::get('/add_to_card/{id}',['as' => 'product.addtocard','uses' => 'ProductController@getAddToCart']);
-Route::get('/shopping-cart',['as' => 'product.shoppingCart','uses' => 'ProductController@getcart']);
-
-
-Route::get('/add_to_wishlist/{id}',['as' => 'product.addtowishlist','uses' => 'ProductController@getAddToWishlist']);
-Route::get('/wish_list',['as' => 'product.wishlist','uses' => 'ProductController@getwishlist']);
-
 Route::auth();
-Route::resource('type','TypeController');
-
-Route::get('men','ProductController@men');
-
-Route::get('/checkout',
-	['as' => 'checkout',
-	'uses' => 'ProductController@getcheckout'
-	]);
- Route::post('/checkout',
-	['as' => 'checkout',
-	'uses' => 'ProductController@postcheckout'
-	]);
-
-Route::get('create', 'ProductController@create');
-Route::post('store', 'ProductController@store');
-
-Route::resource('product','ProductController');
-
-
-
-Route::group(['middleware' => 'guest'] , function(){
-Route::get('/signup',[
-	'as' => 'signup'
-	,'uses' => 'UserController@signup'
-	]);
-
-Route::post('/postsignup',[
-	'as' => 'signup',
-	'uses' => 'UserController@postsignup'
-	]);
-
-Route::post('/handlelogin',[
-	'as' => 'handlelogin',
-	'uses' => 'UserController@handlelogin'
-	]);	
-});
 
 
 Route::group(['middleware' => 'auth'],function(){
+ 
+//route for logout
+Route::get('/logout',['as' => 'logout', 'uses' => 'UserController@logout']);
 
-Route::get('/profile',[
-	'as' => 'profile',
-	'uses' => 'UserController@profile'
-	]);
+//restfull route for products
+Route::resource('product','ProductController');
+Route::get('product/create', 'ProductController@create');
+Route::post('product/store', 'ProductController@store');
 
-Route::get('/logout',[
-	'as' => 'logout',
-    'uses' => 'UserController@logout'
-    ]);
+//route for checkout an product
+Route::get('/checkout',['as' => 'checkout','uses' => 'ProductController@getcheckout']);
+Route::post('/checkout',['as' => 'checkout','uses' => 'ProductController@postcheckout']);
+
+ //route for card
+Route::get('/add_to_card/{id}',['as' => 'product.addtocard','uses' => 'ProductController@getAddToCart']);
+Route::get('/shopping-cart',['as' => 'product.shoppingCart','uses' => 'ProductController@getcart']);
+
+//route for wishlist
+Route::get('/add_to_wishlist/{id}',['as' => 'product.addtowishlist','uses' => 'ProductController@getAddToWishlist']);
+Route::get('/wish_list',['as' => 'product.wishlist','uses' => 'ProductController@getwishlist']);
 
 });
 
 
-
-
-Route::get('/home', 'HomeController@index');
-
-Route::get('/mycards' , 'HomeController@mycards');
-
-Route::get('/wishlist' , 'HomeController@wishlist');
-
-Route::get('men/sport','TypeController@mensport');
-
 // routes to women controller
 Route::get('women/formal', 'WomenController@formal');
+Route::get('women/casual', 'WomenController@casual');
+Route::get('women/evening_dress', 'WomenController@evening_dress');
+Route::get('women/hejab', 'WomenController@hejab');
+Route::get('women/shose_bag', 'WomenController@shose_bag');
+Route::get('women/sport', 'WomenController@sport');
+Route::get('women/weedding_accessory', 'WomenController@weedding_accessory');
+Route::get('women/weedding_dress', 'WomenController@weedding_dress');
+Route::get('women/women', 'WomenController@women');
+
+
+//routes for women controller
+Route::get('men/formal', 'MenController@formal');
+Route::get('men/jeuns', 'MenController@jeuns');
+Route::get('men/shirt', 'MenController@shirt');
+Route::get('men/shose', 'MenController@shose');
+Route::get('men/sport', 'MenController@sport');
+Route::get('men/suit', 'MenController@suit');
+Route::get('men/t_shirt', 'MenController@t_shirt');
+Route::get('men/men', 'MenController@men');
+
+//Home page route
+Route::get('contact','HomeController@contact');
+
+//Home page route	
+Route::get('/',['as' => 'product.index' , 'uses' => 'ProductController@index']);
+

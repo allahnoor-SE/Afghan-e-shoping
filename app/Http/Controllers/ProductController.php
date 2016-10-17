@@ -14,6 +14,7 @@ use Image;
 use Illuminate\Support\Facades\Input;
 use Stripe\Stripe;
 use Stripe\Charge;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -131,6 +132,10 @@ public function getwishlist(){
     }
 
     public function create(){
+
+           if (Auth::user()->role != 1) {
+        return response()->view('errors.503');
+    }
         $products = new Product;
         $data = $products->get();
         return view('Product.create')->with('data',$data);
@@ -146,11 +151,17 @@ public function getwishlist(){
      */
      public function store(Request $request)
     {
+
+             if (Auth::user()->role != 1) {
+        return response()->view('errors.503');
+    }
        
         $product = new Product; 
         $product->title = $request->title;
          $product->description = $request->description;
-         $product->price = $request->price;    
+         $product->price = $request->price; 
+         $product->category_id = $request->category_id;
+         $product->type_id = $request->type_id;   
         if($request->hasFile('icon')){
              $image = $request->file('icon');
              $filename  = time() . '.' . $image->getClientOriginalExtension();
@@ -171,9 +182,15 @@ public function getwishlist(){
 
 
 
-    public function destroy($id)
+      public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $path = asset('img/').'/'.$product->image;
+        Storage::delete($path);
+        $product->delete();
+        
+        session()->flash('delete_message', 'flash_message');
+        return redirect()->back();
     }
 
     public function men(){

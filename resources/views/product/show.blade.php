@@ -16,17 +16,6 @@
                       <div class="simpleLens-container">
                         <div class="simpleLens-big-image-container"><a  data-lens-image="/../{{ $product->imagePath}}" class="simpleLens-lens-image"><img  src="/../{{ $product->imagePath}}" class="simpleLens-big-image"></a></div>
                       </div>
-                     <!--  <div class="simpleLens-thumbnails-container">
-                          <a data-big-image="#"  data-lens-image="#" class="simpleLens-thumbnail-wrapper" href="#">
-                            <img src="#">
-                          </a>                                    
-                          <a data-big-image="#" data-lens-image="#" class="simpleLens-thumbnail-wrapper" href="#">
-                            <img src="#">
-                          </a>
-                          <a data-big-image="#" data-lens-image="#" class="simpleLens-thumbnail-wrapper" href="#">
-                            <img src="#">
-                          </a>
-                      </div> -->
                     </div>
                   </div>
                 </div>

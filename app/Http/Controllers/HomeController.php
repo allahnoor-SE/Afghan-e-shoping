@@ -7,28 +7,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-   
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+public function contact()
     {
-        return view('home');
+        return view('pages.contact');
     }
-    public function wishlist(){
-        return view('pages.wishlist');
-    }
-    public function men(){
-        return view('men.sport');
-    }
-
    
 }
