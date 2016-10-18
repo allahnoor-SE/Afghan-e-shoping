@@ -1,6 +1,8 @@
 <?php
 namespace App;
-class WishList
+use Illuminate\Database\Eloquent\Model;
+
+class WishList extends Model
 {
    public $items = null;
    public $totalQty = 0;

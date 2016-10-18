@@ -17,9 +17,5 @@ class Product extends Model
     	return $this->belongsTo('App/Type','type_id');
     }
 
-    // public function get(){
-    // 	$q = DB::table('products')->get();
-    // 	return $q;
-    // }
 
 }

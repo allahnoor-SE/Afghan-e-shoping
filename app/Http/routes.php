@@ -26,6 +26,27 @@ Route::get('/wish_list',['as' => 'product.wishlist','uses' => 'ProductController
 
 });
 
+Route::auth();
+
+// routes for api only
+Route::group(['namespace' => 'api', 'prefix' => 'api'], function()
+{
+	Route::group(['middleware' => ['jwt.auth']], function(){
+		Route::post('addToWishlist/{id}', 'apiController@addToWishlist');
+		Route::post('removeFromWishlist/{id}', 'apiController@removeFromWishlist');
+		Route::get('wishlists', 'apiController@wishlists');
+
+		Route::post('addToCart/{id}', 'apiController@addToCart');
+		Route::post('removeFromCart/{id}', 'apiController@removeFromCart');
+		Route::get('carts', 'apiController@carts');
+	});
+
+	Route::post('login', 'apiController@authenticate');
+	Route::get('products', 'apiController@index');
+
+});
+
+
 
 // routes to women controller
 Route::get('women/formal', 'WomenController@formal');
@@ -49,7 +70,7 @@ Route::get('men/suit', 'MenController@suit');
 Route::get('men/t_shirt', 'MenController@t_shirt');
 Route::get('men/men', 'MenController@men');
 
-//Home page route
+//contact page route
 Route::get('contact','HomeController@contact');
 
 //Home page route	

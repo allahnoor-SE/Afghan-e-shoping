@@ -23,4 +23,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function wishlists(){
+
+        return $this->belongsToMany('App\Product', 'wishlists', 'user_id', 'product_id');
+    }
+
+    public function carts(){
+
+        return $this->belongsToMany('App\Product', 'carts', 'user_id', 'product_id');
+    }
 }
