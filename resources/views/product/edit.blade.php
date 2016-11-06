@@ -6,36 +6,36 @@
              <div class="row">
                <div class="col-md-8">
                  <div class="aa-contact-address-left">
-                   <form class="comments-form contact-form" action="">
+                   <form class="comments-form contact-form" action="{{url('product/update/'.$product->id)}}" enctype="multipart/form-data" method="post">
+
+                       <input type="hidden" name="_token" value="{{csrf_token()}}">
+
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">                        
-                          <input type="text" placeholder="Your Name" class="form-control">
+                          <input type="text" placeholder="title" class="form-control" name="title" value="{{$product->title}}">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">                        
-                          <input type="email" placeholder="Email" class="form-control">
+                          <input type="text" placeholder="description" class="form-control" value="{{$product->description}}" name="description">
                         </div>
                       </div>
                     </div>
                      <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">                        
-                          <input type="text" placeholder="Subject" class="form-control">
+                          <input type="number" placeholder="price" class="form-control" value="{{$product->price}}" name="price">
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">                        
-                          <input type="text" placeholder="Company" class="form-control">
-                        </div>
-                      </div>
+
                     </div>                  
                      
-                    <div class="form-group">                        
-                      <textarea class="form-control" rows="3" placeholder="Message"></textarea>
+                    <div class="form-group">
+                        <input type="file" name="imagePath" value="{{$product->imagePath}}">
+
                     </div>
-                    <button class="aa-secondary-btn">Send</button>
+                    <button class="aa-secondary-btn" type="submit">Update</button>
                   </form>
                  </div>
                </div>

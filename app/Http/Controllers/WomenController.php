@@ -20,49 +20,49 @@ public function formal(){
 public function casual(){
 
     	$products = Product::where('category_id', 2)
-    	->where('type_id', 2)->get();
+    	->where('type_id', 10)->get();
     	return view ('women.formal', compact('products'));
     }
 
 public function evening_dress(){
 
     	$products = Product::where('category_id', 2)
-    	->where('type_id', 3)->get();
+    	->where('type_id', 11)->get();
     	return view ('women.formal', compact('products'));
     }
 
 public function hejab(){
 
     	$products = Product::where('category_id', 2)
-    	->where('type_id', 4)->get();
+    	->where('type_id', 12)->get();
     	return view ('women.formal', compact('products'));
     }
 
 public function shose_bag(){
 
     	$products = Product::where('category_id', 2)
-    	->where('type_id', 5)->get();
+    	->where('type_id', 13)->get();
     	return view ('women.formal', compact('products'));
     }
 
 public function sport(){
 
     	$products = Product::where('category_id', 2)
-    	->where('type_id', 6)->get();
+    	->where('type_id', 2)->get();
     	return view ('women.formal', compact('products'));
     }
 
 public function weedding_accessory(){
 
     	$products = Product::where('category_id', 2)
-    	->where('type_id', 7)->get();
+    	->where('type_id', 14)->get();
     	return view ('women.formal', compact('products'));
     }
 
     public function weedding_dress(){
 
     	$products = Product::where('category_id', 2)
-    	->where('type_id', 8)->get();
+    	->where('type_id', 15)->get();
     	return view ('women.formal', compact('products'));
     }
 

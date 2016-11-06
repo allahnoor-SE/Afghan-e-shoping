@@ -32,61 +32,50 @@
                          <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" name="name" id="name" placeholder="First Name*" required>
+                                <input type="text" name="name" id="name" placeholder="Name*" required>
                               </div>                             
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Last Name*" id="last-name" required>
+                                <input type="text" name="payment_number" placeholder="Payment Number*" id="last-name">
                               </div>
                             </div>
                           </div>  
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="email" placeholder="Email Address*" id="email" 
-                                required>
-                              </div>                             
-                            </div>
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="tel" placeholder="Phone*"  id="cart-phone" required>
-                              </div>
-                            </div>
-                          </div> 
-                          <div class="row">
+                       <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <textarea cols="8" id="cart-address" rows="3">Address*</textarea>
-                              </div>                             
-                            </div>                            
-                          </div>   
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="aa-checkout-single-bill">
-                                <select>
-                                  <option value="0">Select Your City</option>
-                                  <option value="1">Kabul</option>
-                                  <option value="2">Herat</option>
-                                  <option value="3">Farah</option>
-                                  <option value="4">Kandhar</option>
-                                  <option value="5">Mazar</option>
-                                  <option value="6">Jalalabad</option>
-                                  <option value="7">Parwan</option>
-                                  <option value="8">Qzny</option>
-                                  <option value="9">Helmand</option>
-                                  <option value="10">Badakhshan</option>
-                                  <option value="11">Paktia</option>
-                                  <option value="12">Wardak</option>
-                                  <option value="13">Khost</option>
-                                  <option value="14">Kapesa</option>
-                                  <option value="15">Fariab</option>
-                                  <option value="16">Qundoz</option>
+                                <select name="city">
+                                  <option >Select Your City</option>
+                                  <option value="{{'Kabul'}}">Kabul</option>
+                                  <option value="{{'Herat'}}">Herat</option>
+                                  <option value="{{'Farah'}}">Farah</option>
+                                  <option value="{{'Kandhar'}}">Kandhar</option>
+                                  <option value="{{'Mazar'}}">Mazar</option>
+                                  <option value="{{'Jalalabad'}}">Jalalabad</option>
+                                  <option value="{{'Parwan'}}">Parwan</option>
+                                  <option value="{{'ghazni'}}">ghazni</option>
+                                  <option value="{{'Helmand'}}">Helmand</option>
+                                  <option value="{{'Badakhshan'}}">Badakhshan</option>
+                                  <option value="{{'Paktia'}}">Paktia</option>
+                                  <option value="{{'Wardak'}}">Wardak</option>
+                                  <option value="{{'Khost'}}">Khost</option>
+                                  <option value="{{'Kapesa'}}">Kapesa</option>
+                                  <option value="{{'Fariab'}}">Fariab</option>
+                                  <option value="{{'Qundoz'}}">Qundoz</option>
                                 </select>
                               </div>                             
                             </div>                            
                           </div>
+
                           <div class="row">
+                            <div class="col-md-12">
+                              <div class="aa-checkout-single-bill">
+                                <textarea cols="8" id="cart-address" placeholder="Address*" name="address" rows="3"></textarea>
+                              </div>                             
+                            </div>                            
+                          </div>   
+                        
+                         <!--  <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
                                 <input type="text" id="cart-expiry-year" placeholder="Expiration Year" required>
@@ -97,8 +86,8 @@
                                 <input type="text" id="cart-number" placeholder="Credit Cart Number*">
                               </div>
                             </div>
-                          </div>   
-                          <div class="row">
+                          </div>  -->  
+                         <!--  <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
                                 <input type="text" id="card-expiry-month" placeholder="Expiration Month*">
@@ -109,14 +98,14 @@
                                 <input type="text" id="card-cvc" placeholder="CVC*">
                               </div>
                             </div>
-                          </div> 
-                           <div class="row">
+                          </div> --> 
+                           <!-- <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
                                 <textarea cols="8" rows="3">Special Notes</textarea>
                               </div>                             
                             </div>                            
-                          </div>              
+                          </div>  -->             
                         </div>
                       </div>
                     </div>

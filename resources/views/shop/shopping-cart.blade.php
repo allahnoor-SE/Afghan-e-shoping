@@ -14,8 +14,8 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th></th>
-                        <th></th>
+                        <th>Action</th>
+                       
                         <th>Product</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -25,8 +25,10 @@
                     <tbody>
                     @foreach($products as $product)
                       <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="{{asset('assets/img/man/polo-shirt-1.png')}}" alt="img"></a></td>
+                        <td><a class="remove" href="{{url('remove',['id' => $product['item']['id']])}}" data-toggle="tooltip" data-placement="top" title="Remove One Item"><fa class="fa fa-close"></fa></a>
+                         <a class="remove" href="{{url('RemoveItems',['id' => $product['item']['id']])}}" data-toggle="tooltip" data-placement="top" title="Remove All Items"><fa class="fa fa-close"></fa></a>
+                        </td>
+                        
                         <td><a class="aa-cart-title" href="#"> {{ $product['item'] ['title']}}</a></td>
                         <td>${{ $product['price']}}</td>
                         <td> {{ $product['qty'] }}</td>

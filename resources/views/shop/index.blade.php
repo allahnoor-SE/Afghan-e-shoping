@@ -67,70 +67,7 @@
   </section>
   <!-- / slider -->
   <!-- Start Promo section -->
-  <section id="aa-promo">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="aa-promo-area">
-            <div class="row">
-              <!-- promo left -->
-              <div class="col-md-5 no-padding">                
-                <div class="aa-promo-left">
-                  <div class="aa-promo-banner">                    
-                    <img src="{{asset('img/1.jpg')}}" alt="img">                    
-                    <div class="aa-prom-content">
-                      <h4><a href="#">For Women</a></h4>                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- promo right -->
-              <div class="col-md-7 no-padding">
-                <div class="aa-promo-right">
-                  <div class="aa-single-promo-right">
-                    <div class="aa-promo-banner">                      
-                      <img src="{{asset('img/3.jpg')}}" alt="img">                      
-                      <div class="aa-prom-content">
-                        <span>Exclusive Item</span>
-                        <h4><a href="#">For Men</a></h4>                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="aa-single-promo-right">
-                    <div class="aa-promo-banner">                      
-                      <img src="{{asset('img/2.jpg')}}" alt="img">                      
-                      <div class="aa-prom-content">
-                        <span>Sale Off</span>
-                        <h4><a href="#">On Shoes</a></h4>                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="aa-single-promo-right">
-                    <div class="aa-promo-banner">                      
-                      <img src="{{asset('img/4.jpg')}}" alt="img">                      
-                      <div class="aa-prom-content">
-                        <span>New Arrivals</span>
-                        <h4><a href="#">For Kids</a></h4>                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="aa-single-promo-right">
-                    <div class="aa-promo-banner">                      
-                      <img src="{{asset('img/5.jpg')}}" alt="img">                      
-                      <div class="aa-prom-content">
-                        <span>25% Off</span>
-                        <h4><a href="#">For Bags</a></h4>                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+ <!--  -->
  <section id="aa-product">
     <div class="container">
       <div class="row">
@@ -156,7 +93,7 @@
                         <li style="width: 251px">
                         @foreach($productchunk as $product)
                           <figure>
-                            <a class="aa-product-img" href="#"><img style="width: 251px" src="{{$product->imagePath}}" alt="polo shirt img"></a>
+                            <a class="aa-product-img" href="#"><img style="width: 251px" src="{{asset('../img/'.$product->imagePath)}}" alt="polo shirt img"></a>
                             <a class="aa-add-card-btn" href="{{ route('product.addtocard', ['id' => $product->id])}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                               <figcaption>
                               <h4 class="aa-product-title"><a href="#">{{$product->title}}</a></h4>

@@ -1,24 +1,4 @@
-<!-- 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
- 
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <link rel="stylesheet" href="{{asset('assets1/bootstrap/css/bootstrap.min.css')}}">
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  
- <link rel="stylesheet" href="{{asset('assets1/plugins/datatables/dataTables.bootstrap.css')}}">
-
-  <link rel="stylesheet" href="{{asset('assets1/dist/css/AdminLTE.min.css')}}">
-
-  <link rel="stylesheet" href="{{asset('assets1/dist/css/skins/_all-skins.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{ URL::to('css/app.css')}}">
-
-
- -->
 
 
 

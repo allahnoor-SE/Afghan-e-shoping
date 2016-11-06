@@ -5,11 +5,11 @@
 </head>
   <body> 
    <!-- wpf loader Two -->
-    <div id="wpf-loader-two">          
+   <!--  <div id="wpf-loader-two">          
       <div class="wpf-loader-two-inner">
         <span>Afghan Shop</span>
       </div>
-    </div>       
+    </div>  -->      
   <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
 <!-- Start header section -->
@@ -21,16 +21,21 @@
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
              
-             
+              
              @if (Auth::guest())
                  <li><a href="{{ url('/login')}}">Login</a></li>
                   <li><a href="{{ url('/register')}}">Register</a></li>
                   <!-- <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li> -->
             @else
+               @if(Auth::user()->role == 1)
                   <li class="hidden-xs"><a href="{{url('product/create')}}">Dashboord</a></li>
-                  <li class="hidden-xs"><a href="{{url('/logout')}}">Logout</a></li>
-                  <li class="hidden-xs"><a href="{{url('/wish_list')}}">Wishlist<span class="badge">{{Session::has('wish') ? Session::get('wish')->totalQty : ''}}</span></a></li>
+                      <li class="hidden-xs"><a href="{{url('/logout')}}">Logout</a></li>
+                    @else
+                      <!--  <li class="hidden-xs"><a href="{{url('user/profile')}}">Profile</a></li> -->
+                      <li class="hidden-xs"><a href="{{url('/logout')}}">Logout</a></li>
+                  <li class="hidden-xs"><a href="{{url('/wish_list')}}">Wishlist<span class="badge">{{Session::has('carts') ? Session::get('carts')->totalQty : ''}}</span></a></li>
                   <li class="hidden-xs"><a href="{{url('/shopping-cart')}}">My Cart</a></li>
+                 @endif
             @endif
                </ul>
               </div>
@@ -101,7 +106,7 @@
               <li><a href="#">Men <span class="caret"></span></a>
                 <ul class="dropdown-menu"> 
                   <li><a href="{{url('men/sport')}}">Sport</a></li>
-                  <li><a href="{{url('men/shose')}}">Shose</a></li>       
+                  <li><a href="{{url('men/shoes')}}">Shoes</a></li>       
                   <li><a href="{{url('men/jeuns')}}">Jeans</a></li>
                   <li><a href="{{url('men/shirt')}}">Shirt</a></li>
                   <li><a href="{{url('men/t_shirt')}}">T_Shirt</a></li>
@@ -125,21 +130,10 @@
               </li>
               <li><a href="#">Kids <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>
-                  <li><a href="#">Standard</a></li>                                                
-                  <li><a href="#">T-Shirts</a></li>
-                  <li><a href="#">Shirts</a></li>
-                  <li><a href="#">Jeans</a></li>
-                  <li><a href="#">Trousers</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>                                      
-                    </ul>
-                  </li>
+                  <li><a href="{{url('kid/boys')}}">boys</a></li>
+                  <li><a href="{{url('kid/girls')}}">girls</a></li>
+                 
+                  
                 </ul>
               </li>
             <li><a href="{{url('contact')}}">Contact</a></li>

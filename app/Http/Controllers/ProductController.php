@@ -10,6 +10,7 @@ use App\WishList;
 use App\Type;
 use App\Http\Requests;
 use Session;
+use App\Order;
 use Image;
 use Illuminate\Support\Facades\Input;
 use Stripe\Stripe;
@@ -40,11 +41,26 @@ public function getAddToCart(Request $request, $id){
         return redirect()->back();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+public function getremove($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->remove($id);
+
+        Session::put('cart',$cart);
+        return redirect()->back();
+}
+
+public function getRemoveItems($id){
+     $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+         
+        $cart->RemoveItems($id);
+
+         Session::put('cart',$cart);
+        return redirect()->back();
+}
+
+
 public function getcart()
     {
         if (!Session::has('cart')) {
@@ -75,63 +91,65 @@ public function postcheckout(Request $request){
          }
          $oldCart = Session::get('cart');
          $cart = new Cart($oldCart);
-         Stripe::setApiKey('sk_test_c2KkjUaxDA1VD4Fnqcbz3DL1');
+         // Stripe::setApiKey('sk_test_c2KkjUaxDA1VD4Fnqcbz3DL1');
          try {
-            Charge::create(array(
-               "amount" => $cart->totalPrice * 100,
-               "currency" => "usd",
-               "source" =>  $request->input('stripeToken'),
-               "description" => "test Charge"
+            // $charge=Charge::create(array(
+            //    "amount" => $cart->totalPrice * 100,
+            //    "currency" => "usd",
+            //    "source" =>  $request->input('stripeToken'),
+            //    "description" => "test Charge"
 
-                ));
-             
+            //     ));
+            $order = new Order;
+            $order->cart = serialize($cart);
+            $order->name = $request->input('name');
+            $order->payment_number = $request->input('payment_number');
+            $order->city = $request->input('city');
+            $order->address = $request->input('address');
+
+            Auth::user()->order()->save($order);
+
          } catch (Exception $e) {
             return redirect()->route('checkout')->with('error', $e->getMessage());
              
          }
+           
          Session::forget('cart');
          return redirect()->route('product.index')->with('success','Successfully purchased products');
         }
 
       
 public function getAddToWishlist(Request $request, $id){
-        $product = Product::find($id);
-        $oldwish = Session::has('wish') ? Session::get('wish') : null;
-        $wish = new WishList($oldwish);
-        $wish->add($product, $product->id);
+       $product = Product::find($id);
+        $oldCart = Session::has('carts') ? Session::get('carts') : null;
+        $carts = new Cart($oldCart);
+        $carts->add($product, $product->id);
 
-        $request->session()->put('wish',$wish);
+        $request->session()->put('carts',$carts);
         return redirect()->back();
 
 }
 
+public function getRemoveWish($id){
+        $oldCart = Session::has('carts') ? Session::get('carts') : null;
+        $carts = new Cart($oldCart);
+        $carts->wishRemove($id);
+
+        Session::put('carts',$carts);
+        return redirect()->back();
+}
+
 public function getwishlist(){
-       $product = new Product;
-        $data = $product->get();
-         if (!Session::has('wish')) {
+      if (!Session::has('carts')) {
             return view('shop.wish_list');
         }
-        $oldwish = Session::get('wish');
-        $wish = new WishList($oldwish);
-        return view('shop.wish_list', ['products' => $wish->items, 'totalPrice' => $wish->totalPrice])->with('data',  $data);
+        $oldCart = Session::get('carts');
+        $carts = new Cart($oldCart);
+        return view('shop.wish_list', ['products' => $carts->items, 'totalPrice' => $carts->totalPrice]);
 
 }
 
-
-
-
-
-
-
-
-
-    public function edit($id)
-    {
-    $product = new Product;
-    return view('product.edit')->with('product',$product);
-    }
-
-    public function create(){
+   public function create(){
 
            if (Auth::user()->role != 1) {
         return response()->view('errors.503');
@@ -142,13 +160,45 @@ public function getwishlist(){
       
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function edit($id)
+    {
+    $product = Product::find($id);
+    return view('product.edit')->with('product',$product);
+    }
+
+    public function update(Request $request, $id){
+        $title = $request->get('title');
+        $desc = $request->get('description');
+        $price = $request->get('price');
+
+        $product = Product::find($id);
+
+
+        $image = $request->file('imagePath');
+        $filename  = time() . '.' . $image->getClientOriginalExtension();
+        $request->file('imagePath')->move(
+            base_path() . '/public/img/', $filename
+        );
+
+        $product->title = $title;
+        $product->description = $desc;
+        $product->price = $price;
+        $product->imagePath = $filename;
+        $product->update();
+
+        return redirect('product/create');
+
+    }
+
+    public function delete($id){
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect('product/create');
+    }
+
+
+
      public function store(Request $request)
     {
 
@@ -162,15 +212,15 @@ public function getwishlist(){
          $product->price = $request->price; 
          $product->category_id = $request->category_id;
          $product->type_id = $request->type_id;   
-        if($request->hasFile('icon')){
-             $image = $request->file('icon');
-             $filename  = time() . '.' . $image->getClientOriginalExtension();
-             $path = public_path('img/' . $filename);
-             $imgpath = 'img/product'. $filename;
-             Image::make($image)->resize(200, 200)->save($imgpath);
-             $product->imagePath = $imgpath;
-           }
-             $product->save();
+        
+        $image = $request->file('icon');
+        $filename  = time() . '.' . $image->getClientOriginalExtension();
+        $request->file('icon')->move(
+            base_path() . '/public/img/', $filename
+        );
+
+        $product->imagePath = $filename;
+        $product->save();
              return redirect()->back();
     }
  
@@ -181,22 +231,14 @@ public function getwishlist(){
  }
 
 
-
-      public function destroy($id)
+  public function profile()
     {
-        $product = Product::find($id);
-        $path = asset('img/').'/'.$product->image;
-        Storage::delete($path);
-        $product->delete();
-        
-        session()->flash('delete_message', 'flash_message');
-        return redirect()->back();
+       $orders = Auth::user()->orders;
+       $orders->transform(function($order , $key){
+       $order->cart = unserialize($order->cart);
+         return $order;
+       });
+        return view('user.profile',['orders' => $orders]);
     }
-
-    public function men(){
-        $products = Product::where($category_id, 1);
-        return view('shop.index',compact('products'));
-    }
-
 
 }

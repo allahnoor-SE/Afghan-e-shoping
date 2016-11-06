@@ -50,10 +50,10 @@ public function suit(){
     	return view ('men.suit', compact('products'));
 
     }
-public function shose(){
+public function shoes(){
         $products = Product::where('category_id', 1)
     	->where('type_id', 7)->get();
-    	return view ('men.shose', compact('products'));
+    	return view ('men.shoes', compact('products'));
     }
 
 public function men(){

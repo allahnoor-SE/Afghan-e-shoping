@@ -1,5 +1,5 @@
   <!-- footer -->  
-  <footer id="aa-footer">
+<!--   <footer id="aa-footer">
  
     <div class="aa-footer-bottom">
      <div class="container">
@@ -14,4 +14,4 @@
       </div>
      </div>
     </div>
-  </footer>
+  </footer> -->

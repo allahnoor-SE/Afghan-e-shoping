@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <section id="aa-catg-head-banner">
+  <!-- <section id="aa-catg-head-banner">
    <img style="height: 100%" src="{{asset('img/10.jpg')}}" alt="fashion img">
    <div class="aa-catg-head-banner-area">
      <div class="container">
@@ -15,7 +15,7 @@
       </div>
      </div>
    </div>
-  </section>
+  </section> -->
   <!-- / catg header banner section -->
    <section id="aa-blog-archive">
     <div class="container">
