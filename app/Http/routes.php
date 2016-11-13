@@ -5,7 +5,10 @@ Route::auth();
 Route::group(['middleware' => 'auth'],function(){
  
 //route for logout
+
 Route::get('/logout',['as' => 'logout', 'uses' => 'UserController@logout']);
+Route::get('user/adminprofile/{id}' ,'UserController@update');
+Route::get('user/userprofile/{id}' ,'UserController@userupdate');
 
 //user profile
 Route::get('user/profile','ProductController@profile');
@@ -17,6 +20,8 @@ Route::post('product/store', 'ProductController@store');
 Route::get('product/edit/{id}', 'ProductController@edit');
 Route::post('product/update/{id}', 'ProductController@update');
 Route::get('product/destroy/{id}', 'ProductController@delete');
+Route::get('/admin', 'ProductController@IndixOrder');
+Route::get('product/destroy/{id}', 'ProductController@deleteOrder');
 
 //route for checkout an product
 Route::get('/checkout',['as' => 'checkout','uses' => 'ProductController@getcheckout']);
@@ -47,10 +52,22 @@ Route::group(['namespace' => 'api', 'prefix' => 'api'], function()
 		Route::post('addToCart/{id}', 'apiController@addToCart');
 		Route::post('removeFromCart/{id}', 'apiController@removeFromCart');
 		Route::get('carts', 'apiController@carts');
+		Route::get('user/products', 'apiController@authProducts');
+		Route::post('order/{id}', 'apiController@order');
+		Route::get('cancelOrder/{id}', 'apiController@cancelOrder');
+		Route::get('orders', 'apiController@orders');
+		Route::post('updateAccount', 'apiController@updateAccount');
+		Route::post('feedback', 'apiController@feedback');
 	});
 
+	Route::post('register', 'apiController@register');
 	Route::post('login', 'apiController@authenticate');
 	Route::get('products', 'apiController@index');
+	Route::get('men', 'apiController@men');
+	Route::get('women', 'apiController@women');
+	Route::get('kid', 'apiController@kid');
+	Route::get('search', 'apiController@search');
+	Route::get('feedbacks', 'apiController@feedbacks');
 
 });
 

@@ -36,7 +36,7 @@
             <option value="{{4}}" id="classes" >T_Shirt</option>
             <option value="{{5}}" id="classes" >Jeans</option>
             <option value="{{6}}" id="classes" >Suit</option>
-          <!--   <option value="{{7}}" id="classes" >Shoes</option>
+            <option value="{{7}}" id="classes" >Shoes</option>
             <option value="{{8}}" id="classes" >Boy</option>
             <option value="{{9}}" id="classes" >Girl</option>
             <option value="{{10}}" id="classes" >Casual</option>
@@ -44,7 +44,7 @@
             <option value="{{12}}" id="classes" >Hejab</option>
             <option value="{{13}}" id="classes" >Shoes & Bags</option>
             <option value="{{14}}" id="classes" >weedding_accessory</option>
-            <option value="{{15}}" id="classes" >weedding_dress</option> -->
+            <option value="{{15}}" id="classes" >weedding_dress</option>
 
 
   </select><br>
@@ -73,7 +73,7 @@
                   
                         <tr>
                           <td>{{$product->id}} </td>
-                          <td><img style="width: 251px" src="{{asset('img/'.$product->imagePath)}}" alt="polo shirt img"></td>
+                          <td><img  style="width: 100px"  src="{{asset('../img/'.$product->imagePath)}}"></td>
                         
                           <td>{{$product->title}}</td>
                           <td>{{$product->description}}</td>
@@ -89,11 +89,11 @@
                     </table>
                   </div>
                 
-                  <div class="aa-payment-method">                    
+                  <!-- <div class="aa-payment-method">                    
                    
                       
                     <input type="submit" value="Place Order" class="aa-browse-btn">                
-                  </div>
+                  </div> -->
                 </div>
               </div>
 

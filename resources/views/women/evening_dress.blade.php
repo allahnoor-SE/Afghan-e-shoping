@@ -45,6 +45,7 @@
                         <div class="aa-blog-info">
                           <h3 class="aa-blog-title"><a href="#">{{$product->title}}</a></h3>
                           <p>{{$product->description}}</p> 
+                          <p>${{$product->price}}</p>
                         </div>
                       </article>
                     </div>

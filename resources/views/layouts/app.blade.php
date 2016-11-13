@@ -30,11 +30,12 @@
                @if(Auth::user()->role == 1)
                   <li class="hidden-xs"><a href="{{url('product/create')}}">Dashboord</a></li>
                       <li class="hidden-xs"><a href="{{url('/logout')}}">Logout</a></li>
+                       <li class="hidden-xs"><a href="{{url('/admin')}}">Profile</a></li>
                     @else
-                      <!--  <li class="hidden-xs"><a href="{{url('user/profile')}}">Profile</a></li> -->
+                       <li class="hidden-xs"><a href="{{url('user/profile')}}">Profile</a></li>
                       <li class="hidden-xs"><a href="{{url('/logout')}}">Logout</a></li>
                   <li class="hidden-xs"><a href="{{url('/wish_list')}}">Wishlist<span class="badge">{{Session::has('carts') ? Session::get('carts')->totalQty : ''}}</span></a></li>
-                  <li class="hidden-xs"><a href="{{url('/shopping-cart')}}">My Cart</a></li>
+                 <!--  <li class="hidden-xs"><a href="{{url('/shopping-cart')}}">My Cart</a></li> -->
                  @endif
             @endif
                </ul>
@@ -62,7 +63,7 @@
                <!-- cart box -->
               
               <div class="aa-cartbox">
-                <a class="aa-cart-link" href="#">
+                <a class="aa-cart-link" href="{{url('/shopping-cart')}}">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
                   <span class="aa-cart-notify">{{ Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>

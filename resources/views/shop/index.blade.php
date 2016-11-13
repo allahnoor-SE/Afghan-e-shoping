@@ -98,7 +98,7 @@
                               <figcaption>
                               <h4 class="aa-product-title"><a href="#">{{$product->title}}</a></h4>
                               <p>{{$product->description}}</p>
-                              <span class="aa-product-price">{{$product->price}}</span>
+                              <span class="aa-product-price">${{$product->price}}</span>
                             </figcaption>
                           </figure>                        
                           <div class="aa-product-hvr-content">

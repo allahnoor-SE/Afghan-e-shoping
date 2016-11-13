@@ -3,7 +3,7 @@
 @section('content')
   <div class="row">
   	<div class="col-md-12">
-  		<center><h2> User Profile</h2></center> 
+  		<center><h2> Admin Profile</h2></center> 
              <!-- Split button -->
 <div class="btn-group">
   <button type="button" class="btn btn-danger">Action</button>
@@ -12,7 +12,7 @@
     <span class="sr-only">Toggle Dropdown</span>
   </button>
   <ul class="dropdown-menu">
-    <li><a href="#" data-toggle="modal" data-target="#updateProfile">Action</a></li>
+    <li><a href="#" data-toggle="modal" data-target="#updateProfile">Edit Profile</a></li>
     <li><a href="#">Another action</a></li>
     <li><a href="#">Something else here</a></li>
     <li role="separator" class="divider"></li>
@@ -21,24 +21,36 @@
 </div>
   		 <hr>
 
-  		 <h2>My Orders</h2>
-  		 @foreach($order as $orderw)
-  		 <div class="panel panel-default">
+  		 <h2>Users Orders</h2>
+  		
+       @foreach($order as $orders)
+       
+
+       <div class="panel panel-default">
            <div class="panel-body">
               <ul class="list-group">
-              @foreach($orderw->cart->items as $item)
+               
+              <label>Name:</label>
+       <h6>{{$orders->name}}</h6>
+       <label>City</label>
+      <h6>{{$orders->city}}</h6>
+      <label>Address</label>
+      <h6>{{$orders->address}}</h6>
+      <label>Payment_namber</label>
+      <h6>{{$orders->payment_number}}</h6>
+              <label>Resive at</label>
+      <h6>{{$orders->created_at}}</h6>
+      
+              @foreach($orders->cart->items as $item)
              <li class="list-group-item"><span class="badge">${{ $item['price']}}</span>
-            {{ $item['item']['title']}} |  <strong>{{ $item['qty']}} </strong> Units
+            {{ $item['item']['title']}} | {{ $item['qty']}} Units
              </li>
              @endforeach
                 </ul>
             </div>
             <div class="panel-footer">
-            	  <strong>Total Price: ${{ $orderw->cart->totalPrice}}</strong>
+                <strong>Total Price: ${{ $orders->cart->totalPrice}}</strong>
             </div>
-
-            <a href="{{url('product/destroy', $orderw->id)}}"  class="aa-browse-btn">Cancel</a>
-            
            </div>
            @endforeach
   	</div>

@@ -40,11 +40,43 @@ class UserController extends Controller
   	return back()->withInput();
   }
 
-  public function profile(){
-  	return view('user.profile');
-  }
+  // public function profile(){
+  // 	return view('user.profile');
+  // }
   public function logout(){
   	\Auth::logout();
   	return redirect()->back();
   }
+  public function update(Request $request, $id){
+
+    $name = $request->get('name');
+    $email = $request->get('email');
+     $password = \Hash::make($request->get('password'));
+
+
+
+     $user = User::find($id);
+     $user->name = $name;
+     $user->email = $email;
+     $user->password = $password;
+     $user->update();
+
+     return redirect()->back();
+
+  }
+  // public function userupdate(Request $request, $id){
+
+  //   $name = $request->get('name');
+  //   $name = $request->get('email');
+  //   $name = \Hash::make($request->get('password'));
+
+  //   $user1 = User::find($id);
+  //   $user1->name = $name;
+  //   // s
+  //   $user1->password = $password;
+
+  //   $user1->update();
+
+  //   return redirect()->back();
+  // }
 }

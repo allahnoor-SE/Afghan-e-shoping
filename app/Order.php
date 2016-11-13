@@ -8,7 +8,7 @@ class Order extends Model
 {
 
 protected $table = 'orders';
-    protected $fillable=[ 'cart', 'name', 'payment_number' , 'city', 'address'];
+    protected $fillable=[ 'cart', 'name', 'payment_number' , 'city', 'address','size','color'];
 
     public function user(){
     	return $this->belongsTo('App\User','user_id');

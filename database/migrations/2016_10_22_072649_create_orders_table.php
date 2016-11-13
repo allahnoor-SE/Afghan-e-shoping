@@ -12,19 +12,17 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('orderss', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
-            $table->string('name');
-            $table->text('cart');
-            $table->string('city');
-            $table->text('address');
-            $table->integer('payment_number');
-            $table->integer('size')->nullable();
-            $table->string('color')->nullable();
-            $table->timestamps();
+            $table->string('color');
+            $table->string('size');
+            $table->integer('amount');
+            $table->integer('contact');
+            $table->string('address');
 
+            $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

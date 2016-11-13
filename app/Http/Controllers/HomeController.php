@@ -8,11 +8,13 @@ use Mail;
 use Session;
 class HomeController extends Controller
 {
+    //Email page
 public function contact()
     {
         return view('pages.contact');
     }
-    public function postcontact(Request $request){
+// Email fucntion
+public function postcontact(Request $request){
     	$this->validate($request,[
     		'email' => 'required|email',
     		'subject' => 'min:3',

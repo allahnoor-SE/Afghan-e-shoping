@@ -30,15 +30,15 @@
                     <div class="col-md-4 col-sm-4">
                       <article class="aa-latest-blog-single">
                         <figure class="aa-blog-img">                    
-                          <a href="#"><img alt="img" src="/../{{$product->imagePath}}"></a>  
+                          <a href="#"><img alt="img"  src="{{asset('../img/'.$product->imagePath)}}"></a>  
                             <figcaption class="aa-blog-img-caption">
-                             <a class="aa-add-card-btn" href="{{ route('product.addtocard', ['id' => $product->id])}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-shopping-cart"></span></a>
+                             <a class="aa-add-card-btn" href="{{ route('product.addtocard', ['id' => $product->id])}}" data-toggle="tooltip" data-placement="top" title="Add to Cart"><span class="fa fa-shopping-cart"></span></a>
                             <!-- <span href="#"><i class="fa fa-eye"></i>5K</span> -->
                           
                             <a  href="{{ route('product.addtowishlist', ['id' => $product->id])}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
 
                            <!--  <a href="#"><i class="fa fa-comment-o"></i>20</a> -->
-                            <span href="#"><i class="fa fa-clock-o"></i>June 26, 2016</span>
+                            <span href="#"><i class="fa fa-clock-o"></i>{{date('M j, Y h:ia',strtotime($product->created_at))}}</span>
                           </figcaption>                          
                         </figure>
                         <div class="aa-blog-info">

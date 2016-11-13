@@ -24,6 +24,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // orderBy('id','desc')->paginate(6)
 public function index()
     {
        $products = Product::all();
@@ -149,6 +150,17 @@ public function getwishlist(){
 
 }
 
+
+ public function profile()
+    {
+       $order = Auth::user()->order;
+       $order->transform(function($orders,$key){
+       $orders->cart = unserialize($orders->cart);
+         return $orders;
+       });
+        return view('user.profile',['order' => $order]);
+    }
+
    public function create(){
 
            if (Auth::user()->role != 1) {
@@ -230,15 +242,23 @@ public function getwishlist(){
         return view('product.show')->withProduct($product);
  }
 
-
-  public function profile()
-    {
-       $orders = Auth::user()->orders;
-       $orders->transform(function($order , $key){
-       $order->cart = unserialize($order->cart);
-         return $order;
+  public function IndixOrder(){
+    $order = Order::all();
+   
+    $order->transform(function($orders,$key){
+    $orders->cart = unserialize($orders->cart);
+         return $orders;
        });
-        return view('user.profile',['orders' => $orders]);
-    }
+    return view('user.admin')->with('order',$order);
+
+  }
+  public function deleteOrder($id){
+    $order = Order::find($id);
+    $order->delete();
+    return redirect()->back();
+
+  }
+
+ 
 
 }

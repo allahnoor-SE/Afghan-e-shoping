@@ -14,7 +14,7 @@
                   <div class="aa-product-view-slider">                                
                     <div id="demo-1" class="simpleLens-gallery-container">
                       <div class="simpleLens-container">
-                        <div class="simpleLens-big-image-container"><a  data-lens-image="/../{{ $product->imagePath}}" class="simpleLens-lens-image"><img  src="/../{{ $product->imagePath}}" class="simpleLens-big-image"></a></div>
+                        <div class="simpleLens-big-image-container"><a  data-lens-image="/../{{ $product->imagePath}}" class="simpleLens-lens-image"><img  src="{{asset('../img/'.$product->imagePath)}}" class="simpleLens-big-image"></a></div>
                       </div>
                     </div>
                   </div>

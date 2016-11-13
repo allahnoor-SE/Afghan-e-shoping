@@ -29,8 +29,9 @@
                   @foreach($products as $product)
                     <div class="col-md-4 col-sm-4">
                       <article class="aa-latest-blog-single">
-                        <figure class="aa-blog-img">                    
-                          <a href="#"><img alt="img" src="/../{{$product->imagePath}}"></a>  
+                        <figure class="aa-blog-img">
+                                            
+                          <a href="#"><img alt="img"  src="{{asset('../img/'.$product->imagePath)}}"></a>  
                             <figcaption class="aa-blog-img-caption">
                              <a class="aa-add-card-btn" href="{{ route('product.addtocard', ['id' => $product->id])}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-shopping-cart"></span></a>
                             <!-- <span href="#"><i class="fa fa-eye"></i>5K</span> -->
